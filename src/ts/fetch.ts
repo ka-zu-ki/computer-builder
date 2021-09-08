@@ -28,4 +28,4 @@ const getCpuData = async (params: string) => {
   return body;
 };
 
-export { getCpuData }
+// export { getCpuData }
