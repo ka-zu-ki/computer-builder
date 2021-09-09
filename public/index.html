@@ -15,11 +15,11 @@
         <p class="text-xl mb-5">step 1: Select your CPU</p>
 
         <label for="" class="text-base mr-3">Brand</label>
-        <select name="" id="" class="w-40 h-7 mr-5">
+        <select name="" id="cpuBrand" class="w-40 h-7 mr-5">
           <option value="">-</option>
         </select>
         <label for="" class="text-base mr-3">Model</label>
-        <select name="" id="" class="w-40 h-7 mr-5">
+        <select name="" id="cpuModel" class="w-40 h-7 mr-5">
           <option value="">-</option>
         </select>
       </div>
@@ -28,11 +28,11 @@
         <p class="text-xl mb-5">step 1: Select your GPU</p>
 
         <label for="" class="text-base mr-3">Brand</label>
-        <select name="" id="" class="w-40 h-7 mr-5">
+        <select name="" id="gpuBrand" class="w-40 h-7 mr-5">
           <option value="">-</option>
         </select>
         <label for="" class="text-base mr-3">Model</label>
-        <select name="" id="" class="w-40 h-7 mr-5">
+        <select name="" id="gpuModel" class="w-40 h-7 mr-5">
           <option value="">-</option>
         </select>
       </div>
@@ -42,14 +42,14 @@
 
         <label for="" class="text-base mr-3">How Many?</label>
         <select name="" id="" class="w-20 h-7 mr-5">
-          <option value="">-</option>
+          <option value="ramAmount">-</option>
         </select>
         <label for="" class="text-base mr-3">Brand</label>
-        <select name="" id="" class="w-40 h-7 mr-5">
+        <select name="" id="ramBrand" class="w-40 h-7 mr-5">
           <option value="">-</option>
         </select>
         <label for="" class="text-base mr-3">Model</label>
-        <select name="" id="" class="w-40 h-7 mr-5">
+        <select name="" id="ramModel" class="w-40 h-7 mr-5">
           <option value="">-</option>
         </select>
       </div>
@@ -58,28 +58,28 @@
         <p class="text-xl mb-5">step 3: Select your storage</p>
 
         <label for="" class="text-base mr-3">HDD or SSD</label>
-        <select name="" id="" class="w-40 h-7 mr-5">
+        <select name="" id="storageKind" class="w-40 h-7 mr-5">
           <option value="">-</option>
         </select>
         <label for="" class="text-base mr-3">Storage</label>
-        <select name="" id="" class="w-20 h-7 mr-5">
+        <select name="" id="storage" class="w-20 h-7 mr-5">
           <option value="">-</option>
         </select>
         <label for="" class="text-base mr-3">Brand</label>
-        <select name="" id="" class="w-40 h-7 mr-5">
+        <select name="" id="storageBrand" class="w-40 h-7 mr-5">
           <option value="">-</option>
         </select>
         <label for="" class="text-base mr-3">Model</label>
-        <select name="" id="" class="w-40 h-7 mr-5">
+        <select name="" id="storageModel" class="w-40 h-7 mr-5">
           <option value="">-</option>
         </select>
       </div>
 
       <div class="flex justify-end mt-20">
-        <div class="bg-indigo-400 w-28 h-8 text-white flex justify-center items-center rounded">Add PC</div>
+        <div id="btn" class="bg-indigo-400 w-28 h-8 text-white flex justify-center items-center rounded">Add PC</div>
       </div>
 
-      <div class="mt-10 bg-green-100 p-10 hidden">
+      <div id="score" class="mt-10 bg-green-100 p-10 hidden">
         <div class="flex">
           <div class="flex flex-col w-1/2">
             <p class="text-xl mb-5">CPU</p>
