@@ -1,6 +1,6 @@
 import {
-  cpuModel,
   cpuBrand,
+  cpuModel,
   gpuBrand,
   gpuModel,
   ramAmount,
@@ -14,8 +14,12 @@ import {
   score,
 } from './config';
 
-class Vies {
-  static selectCpu() {
-    
+export class View {
+  static addSelectBox(data: string[] | number[], elm?: HTMLElement) {
+    data.forEach((data) => {
+      const option = document.createElement('option')
+      option.innerHTML = `${data}`
+      elm.appendChild(option)
+    })
   }
 }

@@ -17,6 +17,7 @@
     "webpack-stream": "^7.0.0"
   },
   "scripts": {
-    "dev": "gulp | postcss build src/style.css -o public/style.css"
+    "gulp": "gulp",
+    "dev": "postcss build src/style.css -o public/style.css"
   }
 }

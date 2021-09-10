@@ -1,13 +1,14 @@
 const baseUrl = 'https://api.recursionist.io/builder/computers';
 
 type Method = 'GET';
+type Params = 'cpu' | 'gpu'| 'ram' | 'storage'
 
 const fetchApi = async ({
   method,
   params,
 }: {
   method: Method;
-  params: string;
+  params: Params;
 }) => {
   const res = await fetch(`${baseUrl}?type=${params}`, { method });
 
@@ -19,7 +20,7 @@ const fetchApi = async ({
   return { status: res.status, body: result };
 };
 
-const getCpuData = async (params: string) => {
+const fetchCpuData = async () => {
   const { body } = await fetchApi({
     method: 'GET',
     params: 'cpu',
@@ -28,4 +29,4 @@ const getCpuData = async (params: string) => {
   return body;
 };
 
-// export { getCpuData }
+export { fetchCpuData }

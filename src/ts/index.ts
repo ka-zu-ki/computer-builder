@@ -1,8 +1,3 @@
-import { getCpuData } from './fetch';
+import { Controller } from "./Controller";
 
-getCpuData('cpu').then((res) => {
-  console.log(res);
-  for (const i in res) {
-    console.log(res[i])
-  }
-});
+Controller.getCpu()
