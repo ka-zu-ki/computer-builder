@@ -18,23 +18,29 @@ import {
   storageCapacity,
   storageBrand,
   storageModel,
-  btn
+  btn,
 } from './config';
 
 export class Controller {
-  static init() {
-    this.getCpu()
-    this.getGpu()
-    this.getRam()
-    this.getStorage()
+  static cpuBench: number;
+  static gpuBench: number;
+  static ramBench: number;
+  static storageBench: number;
 
-    this.clickBtn()
+  static init() {
+    this.getCpu();
+    this.getGpu();
+    this.getRam();
+    this.getStorage();
+
+    this.clickBtn();
   }
 
   private static getCpu() {
     let brand: string[] = [];
 
     fetchCpuData().then((res) => {
+      console.log(res[0]);
       for (const i in res) {
         brand.push(res[i].Brand);
         brand = Array.from(new Set(brand));
@@ -42,8 +48,14 @@ export class Controller {
       View.addSelectBox(brand, cpuBrand);
 
       cpuBrand.addEventListener('change', () => {
-        this.filterModel(res, cpuModel, cpuBrand)
-      })
+        this.filterModel(res, cpuModel, cpuBrand);
+      });
+
+      cpuModel.addEventListener('change', () => {
+        for (const i in res) {
+          if (res[i].Model == cpuModel.value) this.cpuBench = res[i].Benchmark;
+        }
+      });
     });
   }
 
@@ -58,8 +70,14 @@ export class Controller {
       View.addSelectBox(brand, gpuBrand);
 
       gpuBrand.addEventListener('change', () => {
-        this.filterModel(res, gpuModel, gpuBrand)
-      })
+        this.filterModel(res, gpuModel, gpuBrand);
+      });
+
+      gpuModel.addEventListener('change', () => {
+        for (const i in res) {
+          if (res[i].Model == gpuModel.value) this.gpuBench = res[i].Benchmark;
+        }
+      });
     });
   }
 
@@ -72,10 +90,16 @@ export class Controller {
         brand = Array.from(new Set(brand));
       }
       View.addSelectBox(brand, ramBrand);
-      
+
       ramBrand.addEventListener('change', () => {
-        this.filterModel(res, ramModel, ramBrand)
-      })
+        this.filterModel(res, ramModel, ramBrand);
+      });
+
+      ramModel.addEventListener('change', () => {
+        for (const i in res) {
+          if (res[i].Model == ramModel.value) this.ramBench = res[i].Benchmark;
+        }
+      });
     });
   }
 
@@ -89,22 +113,29 @@ export class Controller {
 
       fetchStorageData(storageType).then((res) => {
         for (const i in res) {
-          let regexStorage = res[i].Model.match(/\d*[TG]B/g).toString()
-          storage.push(regexStorage)
+          let regexStorage = res[i].Model.match(/\d*[TG]B/g).toString();
+          storage.push(regexStorage);
           brand.push(res[i].Brand);
-          storage = Array.from(new Set(storage))
+          storage = Array.from(new Set(storage));
           brand = Array.from(new Set(brand));
         }
-        View.addSelectBox(storage, storageCapacity)
+        View.addSelectBox(storage, storageCapacity);
         View.addSelectBox(brand, storageBrand);
 
         storageCapacity.addEventListener('change', () => {
-          this.filterModel(res, storageModel, storageBrand, storageCapacity)
-        })
+          this.filterModel(res, storageModel, storageBrand, storageCapacity);
+        });
 
         storageBrand.addEventListener('change', () => {
-          this.filterModel(res, storageModel, storageBrand, storageCapacity)
-        })
+          this.filterModel(res, storageModel, storageBrand, storageCapacity);
+        });
+
+        storageModel.addEventListener('change', () => {
+          for (const i in res) {
+            if (res[i].Model == storageModel.value)
+              this.storageBench = res[i].Benchmark;
+          }
+        });
       });
     });
   }
@@ -122,27 +153,37 @@ export class Controller {
         storageKind?.value,
         storageCapacity?.value,
         storageBrand?.value,
-        storageModel?.value
-      ]
+        storageModel?.value,
+        this.cpuBench,
+        this.gpuBench,
+        this.ramBench,
+        this.storageBench,
+      ];
 
-      Computer.createComputer(value)
-    })
+      Computer.createComputer(value);
+    });
   }
 
-  private static filterModel(res, modelElm: HTMLSelectElement, brandElm: HTMLSelectElement, storageElm?) {
-    let model: string[] = []
+  private static filterModel(
+    res,
+    modelElm: HTMLSelectElement,
+    brandElm: HTMLSelectElement,
+    storageElm?
+  ) {
+    let model: string[] = [];
 
-    View.resetSelectBox(modelElm)
-    const brand = (<HTMLSelectElement>brandElm).value
-    const storage = (<HTMLSelectElement>storageElm)?.value
-    const filteredModel = res.filter(r => r.Brand == brand)
+    View.resetSelectBox(modelElm);
+    const brand = (<HTMLSelectElement>brandElm).value;
+    const storage = (<HTMLSelectElement>storageElm)?.value;
+    const filteredModel = res.filter((r) => r.Brand == brand);
 
     if (storage) {
       for (const i in filteredModel) {
-        if (filteredModel[i].Model.includes(storage)) model.push(filteredModel[i].Model);
+        if (filteredModel[i].Model.includes(storage))
+          model.push(filteredModel[i].Model);
         model = Array.from(new Set(model));
       }
-    } else { 
+    } else {
       for (const i in filteredModel) {
         model.push(filteredModel[i].Model);
         model = Array.from(new Set(model));

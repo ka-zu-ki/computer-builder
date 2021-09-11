@@ -11,7 +11,9 @@ import {
   scoreStorageDisk,
   scoreStorage,
   scoreStorageBrand,
-  scoreStorageModel
+  scoreStorageModel,
+  scoreGame,
+  scoreWork
 } from './config';
 
 export default class View {
@@ -29,7 +31,7 @@ export default class View {
     }
   }
 
-  static showScoreArea(computer: Computer) {
+  static showScoreArea(computer: Computer, scores: number[]) {
     score.classList.remove('hidden')
     container.classList.remove('h-screen')
     container.classList.add('h-full')
@@ -44,5 +46,8 @@ export default class View {
     scoreStorage.innerHTML = `Storage: ${computer.storageCapacity}`
     scoreStorageBrand.innerHTML = `Brand: ${computer.storageBrand}`
     scoreStorageModel.innerHTML = `Model: ${computer.storageModel}`
+    
+    scoreGame.innerHTML = `${scores[0]}`
+    scoreWork.innerHTML = `${scores[1]}`
   }
 }

@@ -22,6 +22,8 @@ const scoreStorageDisk = document.getElementById('scoreStorageDisk')
 const scoreStorage = document.getElementById('scoreStorage')
 const scoreStorageBrand = document.getElementById('scoreStorageBrand')
 const scoreStorageModel = document.getElementById('scoreStorageModel')
+const scoreGame = document.getElementById('scoreGame')
+const scoreWork = document.getElementById('scoreWork')
 
 export {
   container,
@@ -47,5 +49,7 @@ export {
   scoreStorageDisk,
   scoreStorage,
   scoreStorageBrand,
-  scoreStorageModel
+  scoreStorageModel,
+  scoreGame,
+  scoreWork
 };
