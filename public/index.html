@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="bg-gray-300 h-screen py-5">
+  <div id="container" class="bg-gray-300 h-screen py-5">
     <h1 class="bg-gray-400 h-14 flex justify-center items-center text-white text-2xl">Build Your Own PC</h1>
     <div class="px-10">
       <div class="mt-5">
@@ -39,12 +39,12 @@
         <p class="text-xl mb-5">step 3: Select your memory card</p>
 
         <label for="" class="text-base mr-3">How Many?</label>
-        <select name="" id="" class="w-20 h-7 mr-5">
-          <option value="ramAmount">-</option>
-          <option value="ramAmount">1</option>
-          <option value="ramAmount">2</option>
-          <option value="ramAmount">3</option>
-          <option value="ramAmount">4</option>
+        <select name="" id="ramAmount" class="w-20 h-7 mr-5">
+          <option value="0">-</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
         </select>
         <label for="" class="text-base mr-3">Brand</label>
         <select name="" id="ramBrand" class="w-40 h-7 mr-5">
@@ -83,30 +83,30 @@
         <div class="flex">
           <div class="flex flex-col w-1/2">
             <p class="text-xl mb-5">CPU</p>
-            <p class="mb-3">Brand:</p>
-            <p>Model:</p>
+            <p id="scoreCpuBrand" class="mb-3">Brand:</p>
+            <p id="scoreCpuModel">Model:</p>
           </div>
         
           <div class="flex flex-col">
             <p class="text-xl mb-5">GPU</p>  
-            <p class="mb-3">Brand:</p>
-            <p>Model:</p>
+            <p id="scoreGpuBrand" class="mb-3">Brand:</p>
+            <p id="scoreGpuModel">Model:</p>
           </div>
         </div>
 
         <div class="flex mt-10">
           <div class="flex flex-col w-1/2">
             <p class="text-xl mb-5">RAM</p>
-            <p class="mb-3">Brand:</p>
-            <p>Model:</p>
+            <p id="scoreRamBrand" class="mb-3">Brand:</p>
+            <p id="scoreRamModel">Model:</p>
           </div>
         
           <div class="flex flex-col">
             <p class="text-xl mb-5">Storage</p>
-            <p class="mb-3">Disk:</p>
-            <p class="mb-3">Storage:</p>
-            <p class="mb-3">Brand:</p>
-            <p>Model:</p>
+            <p id="scoreStorageDisk" class="mb-3">Disk:</p>
+            <p id="scoreStorage" class="mb-3">Storage:</p>
+            <p id="scoreStorageBrand" class="mb-3">Brand:</p>
+            <p id="scoreStorageModel">Model:</p>
           </div>
         </div>
 

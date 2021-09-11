@@ -1,17 +1,17 @@
+import Computer from './Computer';
 import {
-  cpuBrand,
-  cpuModel,
-  gpuBrand,
-  gpuModel,
-  ramAmount,
-  ramBrand,
-  ramModel,
-  storageKind,
-  storageCapacity,
-  storageBrand,
-  storageModel,
-  btn,
+  container,
   score,
+  scoreCpuBrand,
+  scoreCpuModel,
+  scoreGpuBrand,
+  scoreGpuModel,
+  scoreRamBrand,
+  scoreRamModel,
+  scoreStorageDisk,
+  scoreStorage,
+  scoreStorageBrand,
+  scoreStorageModel
 } from './config';
 
 export default class View {
@@ -27,5 +27,22 @@ export default class View {
     while (1 <= select.childNodes.length) {
       select.removeChild(select.firstChild);
     }
+  }
+
+  static showScoreArea(computer: Computer) {
+    score.classList.remove('hidden')
+    container.classList.remove('h-screen')
+    container.classList.add('h-full')
+
+    scoreCpuBrand.innerHTML = `Brand: ${computer.cpuBrand}`
+    scoreCpuModel.innerHTML = `Model: ${computer.cpuModel}`
+    scoreGpuBrand.innerHTML = `Brand: ${computer.gpuBrand}`
+    scoreGpuModel.innerHTML = `Model: ${computer.gpuModel}`
+    scoreRamBrand.innerHTML = `Brand: ${computer.ramBrand}`
+    scoreRamModel.innerHTML = `Model: ${computer.ramModel}`
+    scoreStorageDisk.innerHTML = `Disk: ${computer.storageKind}`
+    scoreStorage.innerHTML = `Storage: ${computer.storageCapacity}`
+    scoreStorageBrand.innerHTML = `Brand: ${computer.storageBrand}`
+    scoreStorageModel.innerHTML = `Model: ${computer.storageModel}`
   }
 }

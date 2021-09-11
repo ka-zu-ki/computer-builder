@@ -11,6 +11,7 @@ import {
   cpuModel,
   gpuBrand,
   gpuModel,
+  ramAmount,
   ramBrand,
   ramModel,
   storageKind,
@@ -84,7 +85,7 @@ export class Controller {
     let model: string[] = [];
 
     storageKind.addEventListener('change', () => {
-      const storageType = (<HTMLInputElement>storageKind).value;
+      const storageType = storageKind.value;
 
       fetchStorageData(storageType).then((res) => {
         for (const i in res) {
@@ -110,7 +111,21 @@ export class Controller {
 
   private static clickBtn() {
     btn.addEventListener('click', () => {
-      Computer.createComputer()
+      const value = [
+        cpuBrand?.value,
+        cpuModel?.value,
+        gpuBrand?.value,
+        gpuModel?.value,
+        ramAmount?.value,
+        ramBrand?.value,
+        ramModel?.value,
+        storageKind?.value,
+        storageCapacity?.value,
+        storageBrand?.value,
+        storageModel?.value
+      ]
+
+      Computer.createComputer(value)
     })
   }
 
