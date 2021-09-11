@@ -40,7 +40,6 @@ export class Controller {
     let brand: string[] = [];
 
     fetchCpuData().then((res) => {
-      console.log(res[0]);
       for (const i in res) {
         brand.push(res[i].Brand);
         brand = Array.from(new Set(brand));

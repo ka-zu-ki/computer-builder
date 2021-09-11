@@ -47,7 +47,7 @@ export default class View {
     scoreStorageBrand.innerHTML = `Brand: ${computer.storageBrand}`
     scoreStorageModel.innerHTML = `Model: ${computer.storageModel}`
     
-    scoreGame.innerHTML = `${scores[0]}`
-    scoreWork.innerHTML = `${scores[1]}`
+    scoreGame.innerHTML = `${scores[0]}%`
+    scoreWork.innerHTML = `${scores[1]}%`
   }
 }
