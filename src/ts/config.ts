@@ -6,7 +6,7 @@ const ramAmount = document.getElementById('ramAmount');
 const ramBrand = document.getElementById('ramBrand');
 const ramModel = document.getElementById('ramModel');
 const storageKind = document.getElementById('storageKind');
-const storage = document.getElementById('storage');
+const storageCapacity = document.getElementById('storage');
 const storageBrand = document.getElementById('storageBrand');
 const storageModel = document.getElementById('storageModel');
 const btn = document.getElementById('btn');
@@ -21,7 +21,7 @@ export {
   ramBrand,
   ramModel,
   storageKind,
-  storage,
+  storageCapacity,
   storageBrand,
   storageModel,
   btn,
