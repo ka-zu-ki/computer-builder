@@ -1,4 +1,20 @@
-export class View {
+import {
+  cpuBrand,
+  cpuModel,
+  gpuBrand,
+  gpuModel,
+  ramAmount,
+  ramBrand,
+  ramModel,
+  storageKind,
+  storageCapacity,
+  storageBrand,
+  storageModel,
+  btn,
+  score,
+} from './config';
+
+export default class View {
   static addSelectBox(data: string[] | number[], elm: HTMLSelectElement) {
     elm.add(new Option('-'))
 

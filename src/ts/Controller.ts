@@ -1,4 +1,5 @@
-import { View } from './View';
+import View from './View';
+import Computer from './Computer';
 import {
   fetchCpuData,
   fetchGpuData,
@@ -10,19 +11,26 @@ import {
   cpuModel,
   gpuBrand,
   gpuModel,
-  ramAmount,
   ramBrand,
   ramModel,
   storageKind,
   storageCapacity,
   storageBrand,
   storageModel,
-  btn,
-  score,
+  btn
 } from './config';
 
 export class Controller {
-  static getCpu() {
+  static init() {
+    this.getCpu()
+    this.getGpu()
+    this.getRam()
+    this.getStorage()
+
+    this.clickBtn()
+  }
+
+  private static getCpu() {
     let brand: string[] = [];
 
     fetchCpuData().then((res) => {
@@ -38,7 +46,7 @@ export class Controller {
     });
   }
 
-  static getGpu() {
+  private static getGpu() {
     let brand: string[] = [];
 
     fetchGpuData().then((res) => {
@@ -54,7 +62,7 @@ export class Controller {
     });
   }
 
-  static getRam() {
+  private static getRam() {
     let brand: string[] = [];
 
     fetchRamData().then((res) => {
@@ -70,7 +78,7 @@ export class Controller {
     });
   }
 
-  static getStorage() {
+  private static getStorage() {
     let storage: string[] = [];
     let brand: string[] = [];
     let model: string[] = [];
@@ -98,6 +106,12 @@ export class Controller {
         })
       });
     });
+  }
+
+  private static clickBtn() {
+    btn.addEventListener('click', () => {
+      Computer.createComputer()
+    })
   }
 
   private static filterModel(res, modelElm: HTMLSelectElement, brandElm: HTMLSelectElement, storageElm?) {
