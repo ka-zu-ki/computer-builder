@@ -24,7 +24,6 @@ import {
 export class Controller {
   static getCpu() {
     let brand: string[] = [];
-    let model: string[] = [];
 
     fetchCpuData().then((res) => {
       for (const i in res) {
@@ -34,51 +33,40 @@ export class Controller {
       View.addSelectBox(brand, cpuBrand);
 
       cpuBrand.addEventListener('change', () => {
-        View.resetSelectBox(cpuModel)
-        
-        const brand = (<HTMLInputElement>cpuBrand).value
-        const filteredBrand = res.filter(r => r.Brand == brand)
-
-        for (const i in filteredBrand) {
-          model.push(filteredBrand[i].Model);
-          model = Array.from(new Set(model));
-        }
-        View.addSelectBox(model, cpuModel);
+        this.filterModel(res, cpuModel, cpuBrand)
       })
     });
   }
 
   static getGpu() {
     let brand: string[] = [];
-    let model: string[] = [];
 
     fetchGpuData().then((res) => {
       for (const i in res) {
         brand.push(res[i].Brand);
-        model.push(res[i].Model);
         brand = Array.from(new Set(brand));
-        model = Array.from(new Set(model));
       }
-
       View.addSelectBox(brand, gpuBrand);
-      View.addSelectBox(model, gpuModel);
+
+      gpuBrand.addEventListener('change', () => {
+        this.filterModel(res, gpuModel, gpuBrand)
+      })
     });
   }
 
   static getRam() {
     let brand: string[] = [];
-    let model: string[] = [];
 
     fetchRamData().then((res) => {
       for (const i in res) {
         brand.push(res[i].Brand);
-        model.push(res[i].Model);
         brand = Array.from(new Set(brand));
-        model = Array.from(new Set(model));
       }
-
       View.addSelectBox(brand, ramBrand);
-      View.addSelectBox(model, ramModel);
+      
+      ramBrand.addEventListener('change', () => {
+        this.filterModel(res, ramModel, ramBrand)
+      })
     });
   }
 
@@ -95,16 +83,43 @@ export class Controller {
           let regexStorage = res[i].Model.match(/\d*[TG]B/g).toString()
           storage.push(regexStorage)
           brand.push(res[i].Brand);
-          model.push(res[i].Model);
           storage = Array.from(new Set(storage))
           brand = Array.from(new Set(brand));
-          model = Array.from(new Set(model));
         }
-
         View.addSelectBox(storage, storageCapacity)
         View.addSelectBox(brand, storageBrand);
-        View.addSelectBox(model, storageModel);
+
+        storageCapacity.addEventListener('change', () => {
+          this.filterModel(res, storageModel, storageBrand, storageCapacity)
+        })
+
+        storageBrand.addEventListener('change', () => {
+          this.filterModel(res, storageModel, storageBrand, storageCapacity)
+        })
       });
     });
+  }
+
+  private static filterModel(res, modelElm: HTMLSelectElement, brandElm: HTMLSelectElement, storageElm?) {
+    let model: string[] = []
+
+    View.resetSelectBox(modelElm)
+    const brand = (<HTMLSelectElement>brandElm).value
+    const storage = (<HTMLSelectElement>storageElm)?.value
+    const filteredModel = res.filter(r => r.Brand == brand)
+
+    if (storage) {
+      for (const i in filteredModel) {
+        if (filteredModel[i].Model.includes(storage)) model.push(filteredModel[i].Model);
+        model = Array.from(new Set(model));
+      }
+    } else { 
+      for (const i in filteredModel) {
+        model.push(filteredModel[i].Model);
+        model = Array.from(new Set(model));
+      }
+    }
+
+    View.addSelectBox(model, modelElm);
   }
 }

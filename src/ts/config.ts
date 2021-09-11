@@ -1,14 +1,14 @@
-const cpuBrand = document.getElementById('cpuBrand');
-const cpuModel = document.getElementById('cpuModel');
-const gpuBrand = document.getElementById('gpuBrand');
-const gpuModel = document.getElementById('gpuModel');
+const cpuBrand = document.getElementById('cpuBrand') as HTMLSelectElement;
+const cpuModel = document.getElementById('cpuModel') as HTMLSelectElement;
+const gpuBrand = document.getElementById('gpuBrand') as HTMLSelectElement;
+const gpuModel = document.getElementById('gpuModel') as HTMLSelectElement;
 const ramAmount = document.getElementById('ramAmount');
-const ramBrand = document.getElementById('ramBrand');
-const ramModel = document.getElementById('ramModel');
+const ramBrand = document.getElementById('ramBrand') as HTMLSelectElement;
+const ramModel = document.getElementById('ramModel') as HTMLSelectElement;
 const storageKind = document.getElementById('storageKind');
-const storageCapacity = document.getElementById('storage');
-const storageBrand = document.getElementById('storageBrand');
-const storageModel = document.getElementById('storageModel');
+const storageCapacity = document.getElementById('storage') as HTMLSelectElement;
+const storageBrand = document.getElementById('storageBrand') as HTMLSelectElement;
+const storageModel = document.getElementById('storageModel') as HTMLSelectElement;
 const btn = document.getElementById('btn');
 const score = document.getElementById('score');
 

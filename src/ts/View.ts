@@ -1,29 +1,15 @@
-// import {
-//   cpuBrand,
-//   cpuModel,
-//   gpuBrand,
-//   gpuModel,
-//   ramAmount,
-//   ramBrand,
-//   ramModel,
-//   storageKind,
-//   storageCapacity,
-//   storageBrand,
-//   storageModel,
-//   btn,
-//   score,
-// } from './config';
-
 export class View {
-  static addSelectBox(data: string[] | number[], elm: HTMLElement) {
+  static addSelectBox(data: string[] | number[], elm: HTMLSelectElement) {
+    elm.add(new Option('-'))
+
     data.forEach((data) => {
-      const option = document.createElement('option')
-      option.innerHTML = `${data}`
-      elm.appendChild(option)
+      elm.add(new Option(`${data}`))
     })
   }
 
   static resetSelectBox(select: HTMLElement) {
-    console.log('reset')
+    while (1 <= select.childNodes.length) {
+      select.removeChild(select.firstChild);
+    }
   }
 }
