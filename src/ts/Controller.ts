@@ -142,25 +142,39 @@ export class Controller {
   private static clickBtn() {
     btn.addEventListener('click', () => {
       const value = [
-        cpuBrand?.value,
-        cpuModel?.value,
-        gpuBrand?.value,
-        gpuModel?.value,
-        ramAmount?.value,
-        ramBrand?.value,
-        ramModel?.value,
-        storageKind?.value,
-        storageCapacity?.value,
-        storageBrand?.value,
-        storageModel?.value,
+        cpuBrand.value,
+        cpuModel.value,
+        gpuBrand.value,
+        gpuModel.value,
+        ramAmount.value,
+        ramBrand.value,
+        ramModel.value,
+        storageKind.value,
+        storageCapacity.value,
+        storageBrand.value,
+        storageModel.value,
         this.cpuBench,
         this.gpuBench,
         this.ramBench,
         this.storageBench,
       ];
 
+      if (!this.validate(value)) {
+        window.alert('すべての項目を選択してください')
+        return
+      }
+
       Computer.createComputer(value);
     });
+  }
+
+  private static validate(value) {
+    for (const v of value) {
+      if (v == " " || v == "-" || v == "0" || v == undefined) {
+        return false
+      }
+    }
+    return true
   }
 
   private static filterModel(
