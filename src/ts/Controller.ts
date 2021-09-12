@@ -91,7 +91,7 @@ export class Controller {
       View.addSelectBox(brand, ramBrand);
 
       ramBrand.addEventListener('change', () => {
-        this.filterModel(res, ramModel, ramBrand);
+        this.filterModel(res, ramModel, ramBrand, null, ramAmount);
       });
 
       ramModel.addEventListener('change', () => {
@@ -164,22 +164,33 @@ export class Controller {
   }
 
   private static filterModel(
-    res,
+    res: any[],
     modelElm: HTMLSelectElement,
     brandElm: HTMLSelectElement,
-    storageElm?
+    storageElm?: HTMLSelectElement,
+    ramElm?: HTMLSelectElement
   ) {
     let model: string[] = [];
 
     View.resetSelectBox(modelElm);
-    const brand = (<HTMLSelectElement>brandElm).value;
-    const storage = (<HTMLSelectElement>storageElm)?.value;
+    const brand = brandElm.value;
+    const storage = storageElm?.value;
+    const amountR = ramElm?.value
     const filteredModel = res.filter((r) => r.Brand == brand);
 
     if (storage) {
       for (const i in filteredModel) {
         if (filteredModel[i].Model.includes(storage))
           model.push(filteredModel[i].Model);
+        model = Array.from(new Set(model));
+      }
+    } else if (amountR) {
+      for (const i in filteredModel) {
+        let regex = new RegExp(String.raw`${amountR}x\d{1,2}GB`, "g");
+        
+        if (regex.test(filteredModel[i].Model)) {
+          model.push(filteredModel[i].Model);
+        }
         model = Array.from(new Set(model));
       }
     } else {
